@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <div className='flex h-screen text-gray-100'>
         {/* Server selector */}
-        <div className='space-y-2 overflow-y-scroll bg-gray-900 p-3'>
+        <div className='space-y-2 bg-gray-900 p-3'>
           <NavLink href='/'>
             <Discord className='h-5 w-7' />
           </NavLink>
