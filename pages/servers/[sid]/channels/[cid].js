@@ -123,15 +123,16 @@ export default function Server() {
             </button>
           </div>
         </div>
-        <div className='flex-1 space-y-4 overflow-hidden p-3'>
-          {[...Array(40)].map((_, index) => (
-            <p key={index}>
-              Message {index}. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Repudiandae, perspiciatis mollitia voluptate
-              ipsa minus, odio adipisci consectetur expedita minima magni
-              aliquam blanditiis ipsum possimus cupiditate voluptates suscipit
-              quo optio incidunt.
-            </p>
+        <div className='flex-1 overflow-y-scroll'>
+          {channel.messages.map((message, index) => (
+            <div key={message.id}>
+              {index === 0 ||
+              message.user !== channel.messages[index - 1].user ? (
+                <MessageWithUser message={message} />
+              ) : (
+                <Message message={message} />
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -173,5 +174,36 @@ function ChannelLink({ channel }) {
         <Icons.AddPerson className='ml-auto h-4 w-4 text-gray-200 opacity-0 hover:text-gray-100 group-hover:opacity-100' />
       </a>
     </Link>
+  );
+}
+
+function MessageWithUser({ message }) {
+  return (
+    <div className='mt-[17px] flex py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[0.07]'>
+      <img
+        className='mr-4 mt-0.5 h-10 w-10 rounded-full'
+        src={message.avatarUrl}
+        alt='Avatar of Adam Wathan'
+      />
+      <div>
+        <p className='flex items-baseline'>
+          <span className='mr-2 font-medium text-green-400'>
+            {message.user}
+          </span>
+          <span className='text-xs font-medium text-gray-400'>
+            {message.date}
+          </span>
+        </p>
+        <p className='text-gray-100'>{message.text}</p>
+      </div>
+    </div>
+  );
+}
+
+function Message({ message }) {
+  return (
+    <div className='py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[0.07]'>
+      <p className='pl-14 text-gray-100'>{message.text}</p>
+    </div>
   );
 }
