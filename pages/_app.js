@@ -24,6 +24,12 @@ let servers = [
 ];
 function MyApp({ Component, pageProps }) {
   let router = useRouter();
+
+  // Avoid first render by returning null if the router is not ready
+  if (!router.isReady) {
+    return null;
+  }
+
   return (
     <>
       <Head>

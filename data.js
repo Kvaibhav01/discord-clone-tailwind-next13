@@ -1,13 +1,10 @@
-import { format } from 'date-fns';
 import faker from 'faker';
 
 faker.seed(123);
 
-export const data = [
-  {
-    id: 1,
+export const data = {
+  1: {
     label: 'Tailwind CSS',
-    img: 'tailwind.png',
     categories: [
       {
         id: 1,
@@ -149,10 +146,8 @@ export const data = [
       },
     ],
   },
-  {
-    id: 2,
+  2: {
     label: 'Next.js',
-    img: 'next.png',
     categories: [
       {
         id: 6,
@@ -252,10 +247,8 @@ export const data = [
       },
     ],
   },
-  {
-    id: 3,
+  3: {
     label: 'Mirage JS',
-    img: 'mirage.png',
     categories: [
       {
         id: 9,
@@ -273,22 +266,24 @@ export const data = [
       },
     ],
   },
-];
+};
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
 
 function getMessages() {
-  return [...Array(faker.datatype.number({ min: 7, max: 25 }))]
+  return [...Array(getRandomInt(7, 25))]
     .map(() => {
       let user = faker.internet.userName();
-      let avatarUrl = `/avatars/${faker.datatype.number({
-        min: 0,
-        max: 25,
-      })}.jpg`;
+      let avatarUrl = faker.image.avatar();
 
-      return [...Array(faker.datatype.number({ min: 1, max: 4 }))].map(() => ({
-        id: faker.datatype.number(),
+      return [...Array(getRandomInt(1, 4))].map(() => ({
         user,
         avatarUrl,
-        date: format(new Date(faker.date.past()), 'MM/dd/yyyy'),
+        date: '01/15/2021',
         text: faker.lorem.sentences(3),
       }));
     })
