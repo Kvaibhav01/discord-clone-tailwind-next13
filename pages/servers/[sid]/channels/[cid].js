@@ -8,8 +8,7 @@ export default function Server() {
   const [closedCategories, setClosedCategories] = useState([]);
 
   let router = useRouter();
-  let server = data[`${router.query.sid}`];
-
+  let server = data.find((server) => +server.id === +router.query.sid);
   let channel = server.categories
     .map((c) => c.channels)
     .flat()
@@ -27,7 +26,7 @@ export default function Server() {
   return (
     <>
       {/* Channel selector */}
-      <div className='flex w-60 flex-col bg-gray-800'>
+      <div className='hidden w-60 flex-col bg-gray-800 md:flex'>
         <button className='flex h-12 items-center px-4 font-title text-[15px] text-white shadow-sm transition hover:bg-gray-550/[0.16]'>
           <div className='relative mr-1 h-4 w-4'>
             <Icons.Verified className='absolute h-4 w-4 text-gray-550' />
@@ -38,7 +37,7 @@ export default function Server() {
         </button>
 
         <div className='flex-1 space-y-[21px] overflow-hidden pt-3 font-medium text-gray-300'>
-          {data['1'].categories.map((category) => (
+          {server.categories.map((category) => (
             <div key={category.id}>
               {category.label && (
                 <button
@@ -80,16 +79,28 @@ export default function Server() {
             </span>
           </div>
 
+          {/* Channel Description */}
           {channel.description && (
             <>
-              <div className='mx-2 h-6 w-px bg-white/[0.06]'></div>
-              <div className='mx-2 truncate text-sm font-medium text-gray-200'>
+              <div className='mx-2 hidden h-6 w-px bg-white/[0.06] md:block'></div>
+              <div className='mx-2 hidden truncate text-sm font-medium text-gray-200 md:block'>
                 {channel.description}
               </div>
             </>
           )}
 
-          <div className='ml-auto flex items-center'>
+          {/* Mobile Header Desktop */}
+          <div className='ml-auto flex items-center md:hidden'>
+            <button className='text-gray-200 hover:text-gray-100'>
+              <Icons.HashtagWithSpeechBubble className='mx-2 h-6 w-6' />
+            </button>
+            <button className='text-gray-200 hover:text-gray-100'>
+              <Icons.People className='mx-2 h-6 w-6' />
+            </button>
+          </div>
+
+          {/* Channel Header Desktop */}
+          <div className='ml-auto hidden items-center md:flex'>
             <button className='text-gray-200 hover:text-gray-100'>
               <Icons.HashtagWithSpeechBubble className='mx-2 h-6 w-6' />
             </button>
@@ -123,6 +134,7 @@ export default function Server() {
             </button>
           </div>
         </div>
+
         <div className='flex-1 overflow-y-scroll'>
           {channel.messages.map((message, index) => (
             <div key={message.id}>
@@ -147,6 +159,8 @@ function ChannelLink({ channel }) {
   //? Using `+` to coerce strings to numbers
   let active = +channel.id === +router.query.cid;
 
+  let server = data.find((server) => +server.id === +router.query.sid);
+
   let state = active
     ? 'active'
     : channel.unread
@@ -162,7 +176,7 @@ function ChannelLink({ channel }) {
   };
 
   return (
-    <Link href={`/servers/1/channels/${channel.id}`}>
+    <Link href={`/servers/${server.id}/channels/${channel.id}`}>
       <a
         className={`${classes[state]} group relative mx-2 flex items-center rounded px-2 py-1`}
       >

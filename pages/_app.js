@@ -4,24 +4,8 @@ import { useRouter } from 'next/router';
 import { Discord } from '../components/icons';
 import '../styles/globals.css';
 import './../styles.css';
+import { data } from '../data';
 
-let servers = [
-  {
-    id: '1',
-    img: 'tailwind.png',
-    imgAlt: 'Tailwind CSS image',
-  },
-  {
-    id: '2',
-    img: 'next.png',
-    imgAlt: 'Next.js image',
-  },
-  {
-    id: '3',
-    img: 'mirage.png',
-    imgAlt: 'Mirage image',
-  },
-];
 function MyApp({ Component, pageProps }) {
   let router = useRouter();
 
@@ -38,16 +22,16 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <div className='flex h-screen text-gray-100'>
         {/* Server selector */}
-        <div className='space-y-2 bg-gray-900 p-3'>
+        <div className='hidden space-y-2 bg-gray-900 p-3 md:block'>
           <NavLink href='/'>
             <Discord className='h-5 w-7' />
           </NavLink>
 
           <hr className='mx-2 rounded border-t-2 border-t-white/[0.06]' />
 
-          {servers.map((server) => (
+          {data.map((server) => (
             <NavLink
-              href={`/servers/${server.id}/channels/1`}
+              href={`/servers/${server.id}/channels/${server.categories[0].channels[0].id}`}
               key={server.id}
               active={+router.query.sid === +server.id}
             >
