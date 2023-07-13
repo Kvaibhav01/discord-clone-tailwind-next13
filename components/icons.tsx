@@ -1,4 +1,6 @@
-export function Discord(props) {
+import { ComponentProps } from 'react';
+
+export function Discord(props: ComponentProps<'svg'>) {
   return (
     <svg aria-hidden='false' viewBox='0 0 28 20' {...props}>
       <path
@@ -9,7 +11,7 @@ export function Discord(props) {
   );
 }
 
-export function Verified(props) {
+export function Verified(props: ComponentProps<'svg'>) {
   return (
     <svg
       aria-label='Verified'
@@ -26,7 +28,7 @@ export function Verified(props) {
   );
 }
 
-export function Check(props) {
+export function Check(props: ComponentProps<'svg'>) {
   return (
     <svg aria-hidden='false' viewBox='0 0 16 15.2' {...props}>
       <path
@@ -37,7 +39,7 @@ export function Check(props) {
   );
 }
 
-export function Chevron(props) {
+export function Chevron(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 18 18' fill='none' {...props}>
       <path
@@ -48,7 +50,7 @@ export function Chevron(props) {
   );
 }
 
-export function Book(props) {
+export function Book(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 40 40' {...props}>
       <path
@@ -61,7 +63,7 @@ export function Book(props) {
   );
 }
 
-export function Speakerphone(props) {
+export function Speakerphone(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path
@@ -72,7 +74,7 @@ export function Speakerphone(props) {
   );
 }
 
-export function Arrow(props) {
+export function Arrow(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path
@@ -85,7 +87,7 @@ export function Arrow(props) {
   );
 }
 
-export function AddPerson(props) {
+export function AddPerson(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 16 16' {...props}>
       <path
@@ -96,7 +98,7 @@ export function AddPerson(props) {
   );
 }
 
-export function Hashtag(props) {
+export function Hashtag(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path
@@ -109,7 +111,7 @@ export function Hashtag(props) {
   );
 }
 
-export function HashtagWithSpeechBubble(props) {
+export function HashtagWithSpeechBubble(props: ComponentProps<'svg'>) {
   return (
     <svg aria-hidden='false' viewBox='0 0 24 24' fill='none' {...props}>
       <path
@@ -124,7 +126,7 @@ export function HashtagWithSpeechBubble(props) {
   );
 }
 
-export function Bell(props) {
+export function Bell(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' fill='none' {...props}>
       <path
@@ -137,7 +139,7 @@ export function Bell(props) {
   );
 }
 
-export function Pin(props) {
+export function Pin(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path
@@ -148,7 +150,7 @@ export function Pin(props) {
   );
 }
 
-export function People(props) {
+export function People(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path
@@ -171,7 +173,7 @@ export function People(props) {
   );
 }
 
-export function Inbox(props) {
+export function Inbox(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' fill='none' {...props}>
       <path
@@ -182,7 +184,7 @@ export function Inbox(props) {
   );
 }
 
-export function QuestionCircle(props) {
+export function QuestionCircle(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path
@@ -193,7 +195,7 @@ export function QuestionCircle(props) {
   );
 }
 
-export function Spyglass(props) {
+export function Spyglass(props: ComponentProps<'svg'>) {
   return (
     <svg viewBox='0 0 24 24' {...props}>
       <path

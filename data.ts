@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 faker.seed(123);
 
@@ -24,6 +24,7 @@ export const data = [
           {
             id: 2,
             label: 'announcements',
+            description: '',
             icon: 'Speakerphone',
             messages: getMessages(),
           },
@@ -162,6 +163,7 @@ export const data = [
             id: 17,
             label: 'welcome',
             icon: 'Book',
+            description: '',
             messages: getMessages(),
           },
           {
@@ -218,6 +220,7 @@ export const data = [
             id: 23,
             label: 'showcase',
             unread: true,
+            description: '',
             messages: getMessages(),
           },
           {
@@ -261,10 +264,22 @@ export const data = [
         id: 9,
         label: 'Text Channels',
         channels: [
-          { id: 28, label: 'general', messages: getMessages() },
-          { id: 29, label: 'graphql', unread: true, messages: getMessages() },
+          {
+            id: 28,
+            label: 'general',
+            messages: getMessages(),
+            description: '',
+          },
+          {
+            id: 29,
+            description: '',
+            label: 'graphql',
+            unread: true,
+            messages: getMessages(),
+          },
           {
             id: 30,
+            description: '',
             label: 'typescript',
             unread: true,
             messages: getMessages(),
@@ -275,17 +290,22 @@ export const data = [
   },
 ];
 
+export type Channel =
+  (typeof data)[number]['categories'][number]['channels'][number];
+
+export type Message = Channel['messages'][number];
+
 function getMessages() {
-  return [...Array(faker.datatype.number({ min: 7, max: 25 }))]
+  return [...Array(faker.number.int({ min: 7, max: 25 }))]
     .map(() => {
       let user = faker.internet.userName();
-      let avatarUrl = `/avatars/${faker.datatype.number({
+      let avatarUrl = `/avatars/${faker.number.int({
         min: 0,
         max: 25,
       })}.jpg`;
 
-      return [...Array(faker.datatype.number({ min: 1, max: 4 }))].map(() => ({
-        id: faker.datatype.number(),
+      return [...Array(faker.number.int({ min: 1, max: 4 }))].map(() => ({
+        id: faker.number.int(),
         user,
         avatarUrl,
         date: format(new Date(faker.date.past()), 'MM/dd/yyyy'),
